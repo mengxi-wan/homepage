@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mengxi Wan</title>
+<meta name="description" content="Mengxi Wan is a Ph.D. candidate in Economics at the University of Wisconsin-Madison working on labor economics, macroeconomics, and health economics.">
+
+<!-- Open Graph tags: control how the link looks when shared -->
+<meta property="og:title" content="Mengxi Wan">
+<meta property="og:description" content="Ph.D. candidate in Economics, University of Wisconsin-Madison.">
+<meta property="og:url" content="https://www.mengxiwan.com/">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- Design tokens ---------- */
+:root{
+  --paper:      #F2F4F7;
+  --card:       #FDFDFE;
+  --ink:        #131C2B;
+  --muted:      #5A6577;
+  --faint:      #93A0B4;
+  --rule:       #DCE2EB;
+
+  --navy:       #16243F;
+  --navy-mid:   #24395F;
+  --navy-soft:  #46608C;
+  --navy-bg:    #E3E8F1;
+  --gold:       #8A6C24;
+  --gold-bg:    #F1E9D6;
+
+  --serif: "Source Serif 4", Georgia, serif;
+  --sans:  "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --mono:  "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+
+/* ---------- Reset ---------- */
+*,*::before,*::after{ box-sizing:border-box; }
+body,h1,h2,h3,p,ul,ol,li{ margin:0; padding:0; }
+ul,ol{ list-style:none; }
+html{ -webkit-text-size-adjust:100%; }
+
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:16.5px;
+  line-height:1.55;
+  font-optical-sizing:auto;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{ color:var(--navy-mid); text-decoration:none; border-bottom:1px solid rgba(36,57,95,.26); }
+a:hover{ background:var(--navy-bg); border-bottom-color:var(--navy-mid); }
+a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-radius:2px; }
+
+/* ---------- Page frame: everything sits in one view, no scrolling needed ---------- */
+.page{
+  max-width:1000px;
+  margin:0 auto;
+  padding:52px 32px 56px;
+  display:grid;
+  grid-template-columns:236px 1fr;
+  gap:48px;
+  align-items:start;
+}
+
+/* ---------- Left column: identity and contact ---------- */
+.rail{
+  border-right:1px solid var(--rule);
+  padding-right:44px;
+}
+
+.name{
+  font-family:var(--serif);
+  font-size:31px;
+  font-weight:600;
+  letter-spacing:-.014em;
+  line-height:1.1;
+  color:var(--navy);
+}
+.name::after{               /* short gold rule, the page's only flourish */
+  content:"";
+  display:block;
+  width:34px; height:2px;
+  background:var(--gold);
+  margin-top:14px;
+}
+
+.affil{
+  font-family:var(--sans);
+  font-size:13.5px;
+  line-height:1.55;
+  color:var(--muted);
+  margin-top:14px;
+}
+.affil a{ color:var(--muted); border-bottom-color:var(--rule); }
+.affil a:hover{ color:var(--navy); background:none; border-bottom-color:var(--navy-soft); }
+
+.contact{
+  margin-top:22px;
+  padding-top:18px;
+  border-top:1px solid var(--rule);
+  font-family:var(--mono);
+  font-size:12.5px;
+  line-height:1.95;
+  color:var(--muted);
+}
+.contact a{ color:var(--navy-mid); border-bottom-color:rgba(36,57,95,.22); }
+
+/* ---------- Right column ---------- */
+.intro{
+  font-size:17.5px;
+  line-height:1.6;
+  text-wrap:pretty;
+}
+.intro + .intro{ margin-top:10px; }
+
+.section{ margin-top:34px; }
+
+.section-title{
+  font-family:var(--sans);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--navy);
+  padding-bottom:7px;
+  border-bottom:1px solid var(--navy);
+  margin-bottom:18px;
+}
+
+/* ---------- Paper entries ---------- */
+.paper + .paper{ margin-top:20px; }
+
+.paper-title{
+  font-family:var(--serif);
+  font-size:18px;
+  font-weight:600;
+  line-height:1.38;
+  letter-spacing:-.006em;
+  text-wrap:pretty;
+}
+
+.authors{
+  font-size:15.5px;
+  color:var(--muted);
+  margin-top:3px;
+}
+
+.meta{
+  margin-top:6px;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:12px;
+}
+
+/* Status tag: mono so it reads as metadata, not prose */
+.status{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.02em;
+  color:var(--navy-mid);
+  background:var(--navy-bg);
+  padding:3px 8px;
+  border-radius:2px;
+}
+.status.wip{ color:var(--gold); background:var(--gold-bg); }
+
+/* Presentations stay collapsed so the titles are what the page shows first */
+.talks summary{
+  font-family:var(--sans);
+  font-size:12.5px;
+  color:var(--faint);
+  cursor:pointer;
+  list-style:none;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  user-select:none;
+}
+.talks summary::-webkit-details-marker{ display:none; }
+.talks summary::before{ content:"+"; font-family:var(--mono); font-size:12px; }
+.talks[open] summary::before{ content:"\2013"; }
+.talks summary:hover{ color:var(--navy); }
+.talks summary:focus-visible{ outline:2px solid var(--navy); outline-offset:2px; border-radius:2px; }
+.talks-body{
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.55;
+  margin-top:7px;
+  padding-left:14px;
+  border-left:2px solid var(--navy-bg);
+}
+
+/* ---------- Teaching: same entry shape as the papers above ----------
+   Course name on top, details below in the muted line used for coauthors.
+   Regular weight keeps the papers visually dominant. */
+.course{
+  font-family:var(--serif);
+  font-size:16.5px;
+  line-height:1.38;
+}
+.course + .course{ margin-top:13px; }
+.course-meta{
+  font-size:15px;
+  color:var(--muted);
+  margin-top:1px;
+}
+
+/* ---------- Print ----------
+   Ctrl+P should produce a clean sheet: white ground, single column,
+   nothing collapsed, and every link's destination spelled out. */
+@media print{
+  :root{ --paper:#fff; --card:#fff; }
+
+  body{
+    background:#fff;
+    color:#000;
+    font-size:10.5pt;
+    line-height:1.4;
+  }
+
+  .page{
+    display:block;
+    max-width:none;
+    padding:0;
+  }
+
+  .rail{
+    border-right:none;
+    border-bottom:1pt solid #999;
+    padding:0 0 10pt;
+    margin-bottom:14pt;
+  }
+  .name{ font-size:20pt; color:#000; }
+  .name::after{ display:none; }
+  .affil{ margin-top:6pt; }
+  .contact{
+    border-top:none;
+    margin-top:6pt;
+    padding-top:0;
+  }
+
+  .section{ margin-top:16pt; }
+  .section-title{
+    color:#000;
+    border-bottom-color:#000;
+    margin-bottom:9pt;
+  }
+  .paper + .paper{ margin-top:11pt; }
+  .paper-title{ font-size:11.5pt; }
+  .course + .course{ margin-top:7pt; }
+  .status{ background:none; color:#000; padding:0; }
+  .status::before{ content:"["; }
+  .status::after{ content:"]"; }
+
+  /* Expand the collapsed conference lists so nothing is lost on paper */
+  .talks summary{ display:none; }
+  .talks-body{
+    display:block !important;
+    border-left:none;
+    padding-left:0;
+    margin-top:4pt;
+    font-size:9.5pt;
+  }
+  details:not([open]) > .talks-body{ display:block !important; }
+
+  a{ color:#000; border-bottom:none; }
+  /* Spell out destinations, but not for mailto or in-page anchors */
+  main a[href^="http"]::after{
+    content:" (" attr(href) ")";
+    font-size:8.5pt;
+    color:#444;
+    word-break:break-all;
+  }
+
+  /* Keep entries from splitting across pages */
+  .paper, .course, .section-title{ break-inside:avoid; page-break-inside:avoid; }
+  .section-title{ break-after:avoid; page-break-after:avoid; }
+
+  @page{ margin:18mm 16mm; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 820px){
+  .page{
+    grid-template-columns:1fr;
+    gap:28px;
+    padding:36px 20px 56px;
+  }
+  .rail{
+    border-right:none;
+    border-bottom:1px solid var(--rule);
+    padding-right:0;
+    padding-bottom:24px;
+  }
+  .name{ font-size:33px; }
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+
+  <!-- ===== Identity ===== -->
+  <header class="rail">
+    <h1 class="name">Mengxi Wan</h1>
+    <p class="affil">
+      Ph.D. Candidate in <a href="https://econ.wisc.edu/">Economics</a><br>
+      <a href="https://www.wisc.edu/">University of Wisconsin&ndash;Madison</a>
+    </p>
+    <div class="contact">
+      <a href="mailto:mwan9@wisc.edu">mwan9@wisc.edu</a><br>
+      <a href="https://www.dropbox.com/scl/fi/v5ujfnyc4mslthqrpt9te/CV_Mengxi_Wan.pdf?rlkey=mu5wuerudsfu57crx6srah5cy&amp;st=xz4ag336&amp;dl=0">Curriculum Vitae</a>
+    </div>
+  </header>
+
+  <main>
+    <p class="intro">
+      I am a fifth-year Ph.D. candidate in Economics at the University of
+      Wisconsin&ndash;Madison. My research interests lie in labor economics,
+      macroeconomics, and health economics.
+    </p>
+
+    <!-- ===== Working papers ===== -->
+    <section class="section">
+      <h2 class="section-title">Working Papers</h2>
+
+      <article class="paper">
+        <h3 class="paper-title">Health Capital, Labor Market Frictions, and Wage Inequality</h3>
+        <div class="meta">
+          <details class="talks">
+            <summary>Presentations</summary>
+            <div class="talks-body">
+              CES China Annual Conference &middot; Economics Graduate Student Conference &middot;
+              Midwest Macroeconomics Meeting &middot; Annual Meetings of the Midwest Economics
+              Association &middot; Society of Labor Economists Annual Meeting &middot;
+              China International Conference in Macroeconomics
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <article class="paper">
+        <h3 class="paper-title">
+          <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6753923">Social Benefits and Labor Supply in the Gig Economy: Evidence from Singapore's Platform Workers Act</a>
+        </h3>
+        <p class="authors">
+          with <a href="https://www.heinz.cmu.edu/faculty-research/profiles/dai-jingwei/">Jingwei Dai</a>,
+          <a href="https://business.gwu.edu/chad-ho">Chad Ho</a>, and
+          <a href="https://sites.google.com/wisc.edu/jinanlin">Jinan Lin</a>
+        </p>
+        <div class="meta">
+          <span class="status">Revise and Resubmit, Management Science</span>
+          <details class="talks">
+            <summary>Presentations</summary>
+            <div class="talks-body">
+              &ldquo;The Micro and Macro Perspective of the Labor Market&rdquo; Reading Group &middot;
+              Shanghai Jiao Tong University &middot; CCER Summer Institute
+            </div>
+          </details>
+        </div>
+      </article>
+    </section>
+
+    <!-- ===== Work in progress ===== -->
+    <section class="section">
+      <h2 class="section-title">Work in Progress</h2>
+      <article class="paper">
+        <h3 class="paper-title">Work and the Origins of Health Inequality</h3>
+      </article>
+    </section>
+
+    <!-- ===== Teaching: term column in mono so the years align as data ===== -->
+    <section class="section">
+      <h2 class="section-title">Teaching</h2>
+      <div class="course">
+        Econometrics III
+        <p class="course-meta">Econ 706, Master's, Teaching Assistant, Fall 2026</p>
+      </div>
+      <div class="course">
+        Summer Research Group
+        <p class="course-meta">Master's, Research Mentor, Summer 2026</p>
+      </div>
+      <div class="course">
+        Intermediate Macroeconomic Theory
+        <p class="course-meta">Econ 302, Undergraduate, Teaching Assistant, Spring 2026</p>
+      </div>
+      <div class="course">
+        Mathematics for Economists
+        <p class="course-meta">Econ 700, Master's, Teaching Assistant, Fall 2025</p>
+      </div>
+      <div class="course">
+        Econometrics I
+        <p class="course-meta">Econ 704, Master's, Teaching Assistant, Fall 2023</p>
+      </div>
+      <div class="course">
+        Principles of Macroeconomics
+        <p class="course-meta">Econ 102, Undergraduate, Teaching Assistant, Fall 2022 and Spring 2023</p>
+      </div>
+    </section>
+  </main>
+
+</div>
+</body>
+</html>
