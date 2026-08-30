@@ -16,6 +16,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 
+<script>
+  /* Apply the saved theme before the page paints, so there is no flash. */
+  (function(){
+    try{
+      var t = localStorage.getItem("theme");
+      if(t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+    }catch(e){}
+  })();
+</script>
+
 <style>
 /* ---------- Design tokens ---------- */
 :root{
@@ -32,10 +42,50 @@
   --navy-bg:    #E3E8F1;
   --gold:       #8A6C24;
   --gold-bg:    #F1E9D6;
+  --link-rule:  rgba(36,57,95,.26);
+  color-scheme: light;
 
   --serif: "Source Serif 4", Georgia, serif;
   --sans:  "IBM Plex Sans", system-ui, -apple-system, sans-serif;
   --mono:  "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+
+/* ---------- Dark theme ----------
+   Follows the system preference by default; the toggle in the corner
+   sets data-theme on <html> and wins in both directions. */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:      #12161D;
+    --card:       #1A2029;
+    --ink:        #E6E9EF;
+    --muted:      #A7B0BE;
+    --faint:      #6F7A8B;
+    --rule:       #2A3240;
+    --navy:       #DCE3F0;
+    --navy-mid:   #A9BBD9;
+    --navy-soft:  #7F93B5;
+    --navy-bg:    #232E42;
+    --gold:       #D6B35E;
+    --gold-bg:    #332B18;
+    --link-rule:  rgba(169,187,217,.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:      #12161D;
+  --card:       #1A2029;
+  --ink:        #E6E9EF;
+  --muted:      #A7B0BE;
+  --faint:      #6F7A8B;
+  --rule:       #2A3240;
+  --navy:       #DCE3F0;
+  --navy-mid:   #A9BBD9;
+  --navy-soft:  #7F93B5;
+  --navy-bg:    #232E42;
+  --gold:       #D6B35E;
+  --gold-bg:    #332B18;
+  --link-rule:  rgba(169,187,217,.35);
+  color-scheme: dark;
 }
 
 /* ---------- Reset ---------- */
@@ -54,7 +104,7 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-a{ color:var(--navy-mid); text-decoration:none; border-bottom:1px solid rgba(36,57,95,.26); }
+a{ color:var(--navy-mid); text-decoration:none; border-bottom:1px solid var(--link-rule); }
 a:hover{ background:var(--navy-bg); border-bottom-color:var(--navy-mid); }
 a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-radius:2px; }
 
@@ -110,7 +160,7 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
   line-height:1.95;
   color:var(--muted);
 }
-.contact a{ color:var(--navy-mid); border-bottom-color:rgba(36,57,95,.22); }
+.contact a{ color:var(--navy-mid); border-bottom-color:var(--link-rule); }
 
 /* ---------- Right column ---------- */
 .intro{
@@ -213,11 +263,41 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
   margin-top:1px;
 }
 
+/* ---------- Theme toggle ----------
+   One small round button in the corner. Shows a moon in light mode
+   and a sun in dark mode, i.e. the mode you would switch to. */
+.theme-toggle{
+  position:fixed;
+  top:18px; right:18px;
+  width:36px; height:36px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid var(--rule);
+  border-radius:50%;
+  background:var(--card);
+  color:var(--muted);
+  cursor:pointer;
+  padding:0;
+  transition:color .15s, border-color .15s, background .15s;
+}
+.theme-toggle:hover{ color:var(--navy); border-color:var(--navy-soft); }
+.theme-toggle:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; }
+.theme-toggle svg{ width:17px; height:17px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.theme-toggle .icon-sun{ display:none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun{ display:block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon{ display:none; }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun{ display:block; }
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon{ display:none; }
+}
+
 /* ---------- Print ----------
    Ctrl+P should produce a clean sheet: white ground, single column,
    nothing collapsed, and every link's destination spelled out. */
 @media print{
   :root{ --paper:#fff; --card:#fff; }
+  .theme-toggle{ display:none; }
 
   body{
     background:#fff;
@@ -306,6 +386,10 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
 </head>
 
 <body>
+<button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode">
+  <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+</button>
 <div class="page">
 
   <!-- ===== Identity ===== -->
@@ -408,5 +492,30 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
   </main>
 
 </div>
+<script>
+  (function(){
+    var root = document.documentElement;
+    var btn  = document.getElementById("theme-toggle");
+    var mq   = window.matchMedia("(prefers-color-scheme: dark)");
+
+    function current(){
+      var t = root.getAttribute("data-theme");
+      return t ? t : (mq.matches ? "dark" : "light");
+    }
+    function label(){
+      var next = current() === "dark" ? "light" : "dark";
+      btn.setAttribute("aria-label", "Switch to " + next + " mode");
+      btn.setAttribute("title", "Switch to " + next + " mode");
+    }
+    btn.addEventListener("click", function(){
+      var next = current() === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try{ localStorage.setItem("theme", next); }catch(e){}
+      label();
+    });
+    mq.addEventListener("change", label);
+    label();
+  })();
+</script>
 </body>
 </html>
