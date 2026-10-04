@@ -14,7 +14,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 
 <script>
   /* Apply the saved theme before the page paints, so there is no flash. */
@@ -31,42 +31,42 @@
 :root{
   --paper:      #FFFFFF;
   --card:       #FFFFFF;
-  --ink:        #151515;
-  --muted:      #5E5E5E;
-  --faint:      #9B9B9B;
-  --rule:       #DFDFDF;
+  --ink:        #212529;
+  --muted:      #6C757D;
+  --faint:      #ADB5BD;
+  --rule:       #E9ECEF;
 
-  --navy:       #1A1A1A;
-  --navy-mid:   #333333;
-  --navy-soft:  #6E6E6E;
-  --navy-bg:    #E9E9E9;
-  --gold:       #555555;
-  --gold-bg:    #ECECEC;
-  --link-rule:  rgba(0,0,0,.28);
+  --navy:       #212529;
+  --navy-mid:   #2698BA;
+  --navy-soft:  #56AECB;
+  --navy-bg:    #E4F3F8;
+  --gold:       #2698BA;
+  --gold-bg:    #E4F3F8;
+  --link-rule:  rgba(38,152,186,.35);
   color-scheme: light;
 
-  --serif: "EB Garamond", Georgia, serif;
-  --sans:  "EB Garamond", Georgia, serif;
-  --mono:  "EB Garamond", Georgia, serif;
+  --serif: "Roboto", system-ui, -apple-system, sans-serif;
+  --sans:  "Roboto", system-ui, -apple-system, sans-serif;
+  --mono:  "Roboto", system-ui, -apple-system, sans-serif;
 }
 
 /* ---------- Dark theme ----------
    Light by default; the toggle in the corner sets data-theme on <html>
    and the choice is remembered per visitor. */
 :root[data-theme="dark"]{
-  --paper:      #141414;
-  --card:       #1C1C1C;
-  --ink:        #EAEAEA;
-  --muted:      #ACACAC;
-  --faint:      #767676;
-  --rule:       #2E2E2E;
-  --navy:       #F0F0F0;
-  --navy-mid:   #C9C9C9;
-  --navy-soft:  #909090;
-  --navy-bg:    #272727;
-  --gold:       #BDBDBD;
-  --gold-bg:    #2B2B2B;
-  --link-rule:  rgba(201,201,201,.35);
+  --paper:      #1C1C1D;
+  --card:       #242426;
+  --ink:        #E8E8E8;
+  --muted:      #A8ADB2;
+  --faint:      #797F85;
+  --rule:       #333436;
+  --navy:       #EDEDED;
+  --navy-mid:   #4FB3D5;
+  --navy-soft:  #7CC5DD;
+  --navy-bg:    #16333D;
+  --gold:       #4FB3D5;
+  --gold-bg:    #16333D;
+  --link-rule:  rgba(79,179,213,.4);
   color-scheme: dark;
 }
 
@@ -80,8 +80,8 @@ body{
   background:var(--paper);
   color:var(--ink);
   font-family:var(--serif);
-  font-size:18px;
-  line-height:1.5;
+  font-size:16px;
+  line-height:1.6;
   font-optical-sizing:auto;
   -webkit-font-smoothing:antialiased;
 }
@@ -109,7 +109,7 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
 
 .name{
   font-family:var(--serif);
-  font-size:34px;
+  font-size:30px;
   font-weight:600;
   letter-spacing:-.014em;
   line-height:1.1;
@@ -125,7 +125,7 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
 
 .affil{
   font-family:var(--sans);
-  font-size:15.5px;
+  font-size:13.5px;
   line-height:1.55;
   color:var(--muted);
   margin-top:14px;
@@ -137,16 +137,16 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
   margin-top:22px;
   padding-top:18px;
   border-top:1px solid var(--rule);
-  font-family:var(--serif);
-  font-size:15.5px;
-  line-height:1.9;
+  font-family:var(--sans);
+  font-size:13.5px;
+  line-height:1.95;
   color:var(--muted);
 }
 .contact a{ color:var(--navy-mid); border-bottom-color:var(--link-rule); }
 
 /* ---------- Right column ---------- */
 .intro{
-  font-size:19px;
+  font-size:17px;
   line-height:1.6;
   text-wrap:pretty;
 }
@@ -155,12 +155,11 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
 .section{ margin-top:34px; }
 
 .section-title{
-  font-family:var(--serif);
-  font-size:16px;
-  font-weight:600;
-  letter-spacing:.09em;
-  font-variant:small-caps;
-  text-transform:lowercase;
+  font-family:var(--sans);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
   color:var(--navy);
   padding-bottom:7px;
   border-bottom:1px solid var(--navy);
@@ -172,15 +171,15 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
 
 .paper-title{
   font-family:var(--serif);
-  font-size:20px;
-  font-weight:600;
-  line-height:1.38;
+  font-size:17.5px;
+  font-weight:500;
+  line-height:1.4;
   letter-spacing:-.006em;
   text-wrap:pretty;
 }
 
 .authors{
-  font-size:17px;
+  font-size:15px;
   color:var(--muted);
   margin-top:3px;
 }
@@ -195,9 +194,9 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
 
 /* Status tag: mono so it reads as metadata, not prose */
 .status{
-  font-family:var(--serif);
+  font-family:var(--sans);
   font-style:italic;
-  font-size:15px;
+  font-size:14px;
   letter-spacing:.01em;
   color:var(--navy-mid);
 }
@@ -205,8 +204,8 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
 
 /* Presentations stay collapsed so the titles are what the page shows first */
 .talks summary{
-  font-family:var(--serif);
-  font-size:14.5px;
+  font-family:var(--sans);
+  font-size:12.5px;
   color:var(--faint);
   cursor:pointer;
   list-style:none;
@@ -216,12 +215,12 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
   user-select:none;
 }
 .talks summary::-webkit-details-marker{ display:none; }
-.talks summary::before{ content:"+"; font-family:var(--serif); font-size:14px; }
+.talks summary::before{ content:"+"; font-size:12px; }
 .talks[open] summary::before{ content:"\2013"; }
 .talks summary:hover{ color:var(--navy); }
 .talks summary:focus-visible{ outline:2px solid var(--navy); outline-offset:2px; border-radius:2px; }
 .talks-body{
-  font-size:15.5px;
+  font-size:14px;
   color:var(--muted);
   line-height:1.55;
   margin-top:7px;
@@ -234,12 +233,12 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
    Regular weight keeps the papers visually dominant. */
 .course{
   font-family:var(--serif);
-  font-size:18px;
+  font-size:16px;
   line-height:1.38;
 }
 .course + .course{ margin-top:13px; }
 .course-meta{
-  font-size:16px;
+  font-size:14.5px;
   color:var(--muted);
   margin-top:1px;
 }
@@ -357,7 +356,7 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
     padding-right:0;
     padding-bottom:24px;
   }
-  .name{ font-size:36px; }
+  .name{ font-size:32px; }
 }
 </style>
 </head>
