@@ -14,7 +14,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 
 <script>
   /* Apply the saved theme before the page paints, so there is no flash. */
@@ -45,9 +45,9 @@
   --link-rule:  rgba(0,0,0,.28);
   color-scheme: light;
 
-  --serif: "Source Serif 4", Georgia, serif;
-  --sans:  "IBM Plex Sans", system-ui, -apple-system, sans-serif;
-  --mono:  "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --serif: "EB Garamond", Georgia, serif;
+  --sans:  "EB Garamond", Georgia, serif;
+  --mono:  "EB Garamond", Georgia, serif;
 }
 
 /* ---------- Dark theme ----------
@@ -80,8 +80,8 @@ body{
   background:var(--paper);
   color:var(--ink);
   font-family:var(--serif);
-  font-size:16.5px;
-  line-height:1.55;
+  font-size:18px;
+  line-height:1.5;
   font-optical-sizing:auto;
   -webkit-font-smoothing:antialiased;
 }
@@ -109,7 +109,7 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
 
 .name{
   font-family:var(--serif);
-  font-size:31px;
+  font-size:34px;
   font-weight:600;
   letter-spacing:-.014em;
   line-height:1.1;
@@ -125,7 +125,7 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
 
 .affil{
   font-family:var(--sans);
-  font-size:13.5px;
+  font-size:15.5px;
   line-height:1.55;
   color:var(--muted);
   margin-top:14px;
@@ -137,16 +137,16 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
   margin-top:22px;
   padding-top:18px;
   border-top:1px solid var(--rule);
-  font-family:var(--mono);
-  font-size:12.5px;
-  line-height:1.95;
+  font-family:var(--serif);
+  font-size:15.5px;
+  line-height:1.9;
   color:var(--muted);
 }
 .contact a{ color:var(--navy-mid); border-bottom-color:var(--link-rule); }
 
 /* ---------- Right column ---------- */
 .intro{
-  font-size:17.5px;
+  font-size:19px;
   line-height:1.6;
   text-wrap:pretty;
 }
@@ -155,11 +155,12 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
 .section{ margin-top:34px; }
 
 .section-title{
-  font-family:var(--sans);
-  font-size:11px;
+  font-family:var(--serif);
+  font-size:16px;
   font-weight:600;
-  letter-spacing:.15em;
-  text-transform:uppercase;
+  letter-spacing:.09em;
+  font-variant:small-caps;
+  text-transform:lowercase;
   color:var(--navy);
   padding-bottom:7px;
   border-bottom:1px solid var(--navy);
@@ -171,7 +172,7 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
 
 .paper-title{
   font-family:var(--serif);
-  font-size:18px;
+  font-size:20px;
   font-weight:600;
   line-height:1.38;
   letter-spacing:-.006em;
@@ -179,7 +180,7 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
 }
 
 .authors{
-  font-size:15.5px;
+  font-size:17px;
   color:var(--muted);
   margin-top:3px;
 }
@@ -194,17 +195,18 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
 
 /* Status tag: mono so it reads as metadata, not prose */
 .status{
-  font-family:var(--mono);
-  font-size:11px;
-  letter-spacing:.02em;
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:15px;
+  letter-spacing:.01em;
   color:var(--navy-mid);
 }
 .status.wip{ color:var(--gold); }
 
 /* Presentations stay collapsed so the titles are what the page shows first */
 .talks summary{
-  font-family:var(--sans);
-  font-size:12.5px;
+  font-family:var(--serif);
+  font-size:14.5px;
   color:var(--faint);
   cursor:pointer;
   list-style:none;
@@ -214,12 +216,12 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
   user-select:none;
 }
 .talks summary::-webkit-details-marker{ display:none; }
-.talks summary::before{ content:"+"; font-family:var(--mono); font-size:12px; }
+.talks summary::before{ content:"+"; font-family:var(--serif); font-size:14px; }
 .talks[open] summary::before{ content:"\2013"; }
 .talks summary:hover{ color:var(--navy); }
 .talks summary:focus-visible{ outline:2px solid var(--navy); outline-offset:2px; border-radius:2px; }
 .talks-body{
-  font-size:14px;
+  font-size:15.5px;
   color:var(--muted);
   line-height:1.55;
   margin-top:7px;
@@ -232,12 +234,12 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
    Regular weight keeps the papers visually dominant. */
 .course{
   font-family:var(--serif);
-  font-size:16.5px;
+  font-size:18px;
   line-height:1.38;
 }
 .course + .course{ margin-top:13px; }
 .course-meta{
-  font-size:15px;
+  font-size:16px;
   color:var(--muted);
   margin-top:1px;
 }
@@ -355,7 +357,7 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
     padding-right:0;
     padding-bottom:24px;
   }
-  .name{ font-size:33px; }
+  .name{ font-size:36px; }
 }
 </style>
 </head>
