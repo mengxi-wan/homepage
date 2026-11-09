@@ -86,8 +86,8 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-a{ color:var(--navy-mid); text-decoration:none; border-bottom:1px solid var(--link-rule); }
-a:hover{ background:var(--navy-bg); border-bottom-color:var(--navy-mid); }
+a{ color:var(--navy-mid); text-decoration:none; border-bottom:1px solid transparent; }
+a:hover{ border-bottom-color:currentColor; }
 a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-radius:2px; }
 
 /* ---------- Page frame: everything sits in one view, no scrolling needed ---------- */
@@ -130,8 +130,8 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
   color:var(--muted);
   margin-top:14px;
 }
-.affil a{ color:var(--muted); border-bottom-color:var(--rule); }
-.affil a:hover{ color:var(--navy); background:none; border-bottom-color:var(--navy-soft); }
+.affil a{ color:var(--muted); }
+.affil a:hover{ color:var(--navy); }
 
 .contact{
   margin-top:22px;
@@ -142,7 +142,7 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
   line-height:1.95;
   color:var(--muted);
 }
-.contact a{ color:var(--navy-mid); border-bottom-color:var(--link-rule); }
+.contact a{ color:var(--navy-mid); }
 
 /* ---------- Right column ---------- */
 .intro{
