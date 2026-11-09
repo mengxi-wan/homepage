@@ -267,14 +267,6 @@ main{
   font-variant-numeric:tabular-nums;
 }
 
-.foot{
-  margin-top:56px;
-  padding-top:14px;
-  border-top:1px solid var(--rule);
-  font-size:12.5px;
-  color:var(--faint);
-}
-
 /* ---------- Theme toggle ----------
    One small round button in the corner. Shows a moon in light mode
    and a sun in dark mode, i.e. the mode you would switch to. */
@@ -327,7 +319,6 @@ main{
     margin-bottom:14pt;
   }
   main{ border-left:none; padding-left:0; }
-  .foot{ display:none; }
   .name{ font-size:20pt; color:#000; }
   .name::after{ display:none; }
   .affil{ margin-top:6pt; }
@@ -511,8 +502,6 @@ main{
         <span class="course-term">Fall 2022, Spring 2023</span>
       </div>
     </section>
-
-    <footer class="foot">Last updated <span id="updated">November 2026</span></footer>
   </main>
 
 </div>
@@ -536,12 +525,6 @@ main{
       label();
     });
     label();
-
-    var d = new Date(document.lastModified);
-    if(!isNaN(d)){
-      document.getElementById("updated").textContent =
-        d.toLocaleDateString("en-US", { month:"long", year:"numeric" });
-    }
   })();
 </script>
 </body>
