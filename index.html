@@ -97,14 +97,20 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
   padding:52px 32px 56px;
   display:grid;
   grid-template-columns:256px 1fr;
-  gap:48px;
+  gap:0;
   align-items:start;
 }
 
 /* ---------- Left column: identity and contact ---------- */
 .rail{
-  border-right:1px solid var(--rule);
   padding-right:36px;
+  position:sticky;
+  top:52px;
+}
+main{
+  border-left:1px solid var(--rule);
+  padding-left:48px;
+  min-width:0;
 }
 
 .name{
@@ -152,7 +158,7 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
 }
 .intro + .intro{ margin-top:10px; }
 
-.section{ margin-top:34px; }
+.section{ margin-top:40px; }
 
 .section-title{
   font-family:var(--sans);
@@ -162,8 +168,8 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
   text-transform:uppercase;
   color:var(--navy);
   padding-bottom:7px;
-  border-bottom:1px solid var(--navy);
-  margin-bottom:18px;
+  border-bottom:1px solid var(--rule);
+  margin-bottom:16px;
 }
 
 /* ---------- Paper entries ---------- */
@@ -242,13 +248,31 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
 .course{
   font-family:var(--serif);
   font-size:16px;
-  line-height:1.38;
+  line-height:1.4;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  column-gap:12px;
 }
-.course + .course{ margin-top:13px; }
+.course + .course{ margin-top:9px; }
 .course-meta{
   font-size:14.5px;
   color:var(--muted);
-  margin-top:1px;
+  flex:1;
+}
+.course-term{
+  font-size:14.5px;
+  color:var(--muted);
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+
+.foot{
+  margin-top:56px;
+  padding-top:14px;
+  border-top:1px solid var(--rule);
+  font-size:12.5px;
+  color:var(--faint);
 }
 
 /* ---------- Theme toggle ----------
@@ -297,11 +321,13 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
   }
 
   .rail{
-    border-right:none;
+    position:static;
     border-bottom:1pt solid #999;
     padding:0 0 10pt;
     margin-bottom:14pt;
   }
+  main{ border-left:none; padding-left:0; }
+  .foot{ display:none; }
   .name{ font-size:20pt; color:#000; }
   .name::after{ display:none; }
   .affil{ margin-top:6pt; }
@@ -359,11 +385,13 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
     padding:36px 20px 56px;
   }
   .rail{
-    border-right:none;
+    position:static;
     border-bottom:1px solid var(--rule);
     padding-right:0;
     padding-bottom:24px;
   }
+  main{ border-left:none; padding-left:0; }
+  .course-name{ flex-basis:100%; }
   .name{ font-size:32px; }
 }
 </style>
@@ -453,30 +481,38 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
     <section class="section">
       <h2 class="section-title">Teaching</h2>
       <div class="course">
-        Econometrics III
-        <p class="course-meta">Econ 706, Master's, Teaching Assistant, Fall 2026</p>
+        <span class="course-name">Econometrics III</span>
+        <span class="course-meta">Econ 706, Master's, Teaching Assistant</span>
+        <span class="course-term">Fall 2026</span>
       </div>
       <div class="course">
-        Summer Research Group
-        <p class="course-meta">Master's, Research Mentor, Summer 2026</p>
+        <span class="course-name">Summer Research Group</span>
+        <span class="course-meta">Master's, Research Mentor</span>
+        <span class="course-term">Summer 2026</span>
       </div>
       <div class="course">
-        Intermediate Macroeconomic Theory
-        <p class="course-meta">Econ 302, Undergraduate, Teaching Assistant, Spring 2026</p>
+        <span class="course-name">Intermediate Macroeconomic Theory</span>
+        <span class="course-meta">Econ 302, Undergraduate, Teaching Assistant</span>
+        <span class="course-term">Spring 2026</span>
       </div>
       <div class="course">
-        Mathematics for Economists
-        <p class="course-meta">Econ 700, Master's, Teaching Assistant, Fall 2025</p>
+        <span class="course-name">Mathematics for Economists</span>
+        <span class="course-meta">Econ 700, Master's, Teaching Assistant</span>
+        <span class="course-term">Fall 2025</span>
       </div>
       <div class="course">
-        Econometrics I
-        <p class="course-meta">Econ 704, Master's, Teaching Assistant, Fall 2023</p>
+        <span class="course-name">Econometrics I</span>
+        <span class="course-meta">Econ 704, Master's, Teaching Assistant</span>
+        <span class="course-term">Fall 2023</span>
       </div>
       <div class="course">
-        Principles of Macroeconomics
-        <p class="course-meta">Econ 102, Undergraduate, Teaching Assistant, Fall 2022 and Spring 2023</p>
+        <span class="course-name">Principles of Macroeconomics</span>
+        <span class="course-meta">Econ 102, Undergraduate, Teaching Assistant</span>
+        <span class="course-term">Fall 2022, Spring 2023</span>
       </div>
     </section>
+
+    <footer class="foot">Last updated <span id="updated">November 2026</span></footer>
   </main>
 
 </div>
@@ -500,6 +536,12 @@ a:focus-visible{ outline:2px solid var(--navy-mid); outline-offset:2px; border-r
       label();
     });
     label();
+
+    var d = new Date(document.lastModified);
+    if(!isNaN(d)){
+      document.getElementById("updated").textContent =
+        d.toLocaleDateString("en-US", { month:"long", year:"numeric" });
+    }
   })();
 </script>
 </body>
