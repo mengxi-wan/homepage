@@ -254,6 +254,15 @@ main{
   column-gap:10px;
 }
 .course + .course{ margin-top:9px; }
+.course-group{
+  font-family:var(--serif);
+  font-size:15px;
+  font-weight:400;
+  font-style:italic;
+  color:var(--ink);
+  margin:0 0 9px;
+}
+.course + .course-group{ margin-top:22px; }
 .course-meta{
   font-size:14.5px;
   color:var(--muted);
@@ -470,34 +479,36 @@ main{
     <!-- ===== Teaching: term column in mono so the years align as data ===== -->
     <section class="section">
       <h2 class="section-title">Teaching</h2>
+      <h3 class="course-group">Research Mentor</h3>
+      <div class="course">
+        <span class="course-name">Summer Research Group</span>
+        <span class="course-meta">Master's</span>
+        <span class="course-term">Summer 2026</span>
+      </div>
+      <h3 class="course-group">Teaching Assistant</h3>
       <div class="course">
         <span class="course-name">Econometrics III</span>
-        <span class="course-meta">Econ 706, Master's, Teaching Assistant</span>
+        <span class="course-meta">Econ 706, Master's</span>
         <span class="course-term">Fall 2026</span>
       </div>
       <div class="course">
-        <span class="course-name">Summer Research Group</span>
-        <span class="course-meta">Master's, Research Mentor</span>
-        <span class="course-term">Summer 2026</span>
-      </div>
-      <div class="course">
         <span class="course-name">Intermediate Macroeconomic Theory</span>
-        <span class="course-meta">Econ 302, Undergraduate, Teaching Assistant</span>
+        <span class="course-meta">Econ 302, Undergraduate</span>
         <span class="course-term">Spring 2026</span>
       </div>
       <div class="course">
         <span class="course-name">Mathematics for Economists</span>
-        <span class="course-meta">Econ 700, Master's, Teaching Assistant</span>
+        <span class="course-meta">Econ 700, Master's</span>
         <span class="course-term">Fall 2025</span>
       </div>
       <div class="course">
         <span class="course-name">Econometrics I</span>
-        <span class="course-meta">Econ 704, Master's, Teaching Assistant</span>
+        <span class="course-meta">Econ 704, Master's</span>
         <span class="course-term">Fall 2023</span>
       </div>
       <div class="course">
         <span class="course-name">Principles of Macroeconomics</span>
-        <span class="course-meta">Econ 102, Undergraduate, Teaching Assistant</span>
+        <span class="course-meta">Econ 102, Undergraduate</span>
         <span class="course-term">Fall 2022, Spring 2023</span>
       </div>
     </section>
